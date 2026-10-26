@@ -5,8 +5,19 @@ import { toast } from "sonner";
 import { useSiteDesign } from "@/lib/siteDesign";
 
 /** Mini mock of each design so the admin can see what the switch does. */
-const DesignPreview = ({ variant, active }: { variant: "classic" | "texotic"; active: boolean }) => {
+const DesignPreview = ({
+  variant,
+  active,
+  disabled,
+  onTurnOn,
+}: {
+  variant: "classic" | "texotic";
+  active: boolean;
+  disabled: boolean;
+  onTurnOn: () => void;
+}) => {
   const isClassic = variant === "classic";
+  const accent = isClassic ? "#22c55e" : "#f5900d";
 
   return (
     <div
@@ -53,6 +64,18 @@ const DesignPreview = ({ variant, active }: { variant: "classic" | "texotic"; ac
       <p className={`mt-4 text-[10px] font-bold uppercase tracking-[0.18em] ${isClassic ? "text-white/50" : "text-[#71717a]"}`}>
         {isClassic ? "Classic design" : "Texotic design"}
       </p>
+      <button
+        onClick={onTurnOn}
+        disabled={active || disabled}
+        className="mt-3 w-full rounded-full py-1.5 text-xs font-bold transition-all duration-300 enabled:hover:scale-[1.02] disabled:cursor-default"
+        style={
+          active
+            ? { background: "transparent", color: accent, border: `1px solid ${accent}` }
+            : { background: accent, color: "#0a0a0a" }
+        }
+      >
+        {active ? "● Live now" : "Turn on"}
+      </button>
     </div>
   );
 };
@@ -62,14 +85,19 @@ const AdminDesignToggle = () => {
   const [isSaving, setIsSaving] = useState(false);
   const classicOn = design === "classic";
 
-  const handleToggle = async () => {
+  const saveDesign = async (classic: boolean) => {
     setIsSaving(true);
     try {
-      await setClassicEnabled(!classicOn);
-      toast.success(!classicOn ? "Classic design is live" : "Texotic design is live");
+      await setClassicEnabled(classic);
+      toast.success(classic ? "Classic design is live" : "Texotic design is live");
     } catch (error) {
       console.error("Save site design error:", error);
-      toast.error("Could not save the design. Did you run the site_settings SQL in Supabase?");
+      const code = (error as { code?: string })?.code;
+      toast.error(
+        code === "PGRST205"
+          ? "The site_settings table does not exist yet. Run section 4 of supabase_setup.sql in the Supabase SQL Editor."
+          : `Could not save the design: ${(error as { message?: string })?.message ?? "unknown error"}`
+      );
     } finally {
       setIsSaving(false);
     }
@@ -91,14 +119,14 @@ const AdminDesignToggle = () => {
         </div>
 
         <div className="flex flex-1 flex-col sm:flex-row items-stretch sm:items-center gap-4">
-          <DesignPreview variant="classic" active={classicOn} />
+          <DesignPreview variant="classic" active={classicOn} disabled={isSaving} onTurnOn={() => saveDesign(true)} />
 
           {/* The switch */}
           <button
             role="switch"
             aria-checked={classicOn}
             aria-label="Classic design"
-            onClick={handleToggle}
+            onClick={() => saveDesign(!classicOn)}
             disabled={isSaving}
             className="group relative mx-auto flex-shrink-0 h-[52px] w-[104px] rounded-full p-[5px] transition-all duration-500 disabled:cursor-wait"
             style={{
@@ -142,7 +170,7 @@ const AdminDesignToggle = () => {
             </motion.span>
           </button>
 
-          <DesignPreview variant="texotic" active={!classicOn} />
+          <DesignPreview variant="texotic" active={!classicOn} disabled={isSaving} onTurnOn={() => saveDesign(false)} />
         </div>
       </div>
     </div>
