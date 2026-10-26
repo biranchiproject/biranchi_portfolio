@@ -13,7 +13,10 @@ ALTER TABLE public.admins ENABLE ROW LEVEL SECURITY;
 
 -- Allow anyone to read the admins table (needed for login check on frontend)
 -- We only expose the hashed password, which is secure enough for comparison
-CREATE POLICY "Allow public read of admins" 
+-- (DROP first so the whole script can be re-run; the SQL editor rolls everything
+-- back if any statement fails, e.g. "policy already exists".)
+DROP POLICY IF EXISTS "Allow public read of admins" ON public.admins;
+CREATE POLICY "Allow public read of admins"
 ON public.admins
 FOR SELECT 
 USING (true);
@@ -110,3 +113,6 @@ WITH CHECK (true);
 INSERT INTO public.site_settings (key, value)
 VALUES ('classic_design', 'true'::jsonb)
 ON CONFLICT (key) DO NOTHING;
+
+-- Make the API see the new table immediately.
+NOTIFY pgrst, 'reload schema';
