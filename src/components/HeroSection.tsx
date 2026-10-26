@@ -183,14 +183,48 @@ const HeroSection = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
             <span className="tx-chip">
-              Hi! I'm Biranchi · <span className="hidden sm:inline">Bhubaneswar,</span> Odisha
+              Hi! I'm Biranchi · Creativity
             </span>
 
-            <h1 className="tx-solid-ink mt-8 text-[clamp(3rem,9.5vw,8rem)] leading-[0.92] tracking-[-0.06em]">
-              Securing the
-              <br />
-              Digital Frontier.
-            </h1>
+            <h1 className="sr-only">Biranchi — Securing the Digital Frontier</h1>
+
+            {/* Animated profile circle: spinning amber ring, pulsing glow, gentle float */}
+            <div className="mt-12 flex justify-center">
+              <motion.div
+                className="relative w-56 h-56 md:w-72 md:h-72 cursor-pointer"
+                onClick={handleProfileClick}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                {[0, 1.5].map((delay) => (
+                  <motion.span
+                    key={delay}
+                    aria-hidden
+                    className="absolute inset-0 rounded-full"
+                    style={{ boxShadow: "0 0 0 2px rgba(245,144,13,.55), 0 0 40px 6px rgba(245,144,13,.35)" }}
+                    animate={{ scale: [1, 1.22], opacity: [0.7, 0] }}
+                    transition={{ duration: 3, delay, repeat: Infinity, ease: "easeOut" }}
+                  />
+                ))}
+                <motion.span
+                  aria-hidden
+                  className="absolute -inset-2 rounded-full"
+                  style={{
+                    background: "conic-gradient(from 0deg, #f5900d, #fde68a, #0a0a0a 45%, #f5900d 70%, #fde68a, #f5900d)",
+                    boxShadow: "0 20px 50px -12px rgba(245,144,13,.55)",
+                  }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                />
+                <div className="absolute inset-0 rounded-full overflow-hidden border-[6px] border-[#f5f8ef] shadow-[0_10px_30px_-8px_rgba(0,0,0,.35)]">
+                  <img
+                    src={profilePhotoUrl || profilePhoto}
+                    alt="Biranchi - Cybersecurity Enthusiast & AI Developer"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+            </div>
 
             <p className="mt-8 text-lg md:text-2xl text-[#71717a] min-h-[1.5em]">
               I'm a <span className="font-semibold text-[#0a0a0a]">{displayText}</span>
@@ -240,18 +274,8 @@ const HeroSection = () => {
             transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="mt-16 md:mt-20 mx-auto max-w-5xl rounded-[40px] md:rounded-[56px] border-2 border-white/80 bg-white/25 backdrop-blur-md p-5 md:p-8 shadow-[0_30px_80px_-30px_rgba(120,100,20,0.35)]"
           >
-            <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-center">
-              <div className="mx-auto cursor-pointer rounded-[32px] p-2.5 tx-surface" onClick={handleProfileClick}>
-                <div className="w-48 h-48 md:w-56 md:h-56 overflow-hidden rounded-[24px]">
-                  <img
-                    src={profilePhotoUrl || profilePhoto}
-                    alt="Biranchi - Cybersecurity Enthusiast & AI Developer"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
-              <div className="text-left">
+            <div>
+              <div className="text-center md:px-6">
                 <p className="tx-display text-2xl md:text-4xl font-bold tracking-[-0.03em] text-[#0a0a0a] leading-tight">
                   Building secure, intelligent software —{" "}
                   <span className="text-[#71717a]">delivered completely error-free.</span>
