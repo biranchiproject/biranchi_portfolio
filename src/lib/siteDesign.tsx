@@ -17,6 +17,9 @@ const SETTING_KEY = "classic_design";
 const THEME_CLASS = "theme-texotic";
 
 const PREVIEW_KEY = "site-design-preview";
+const VISITOR_KEY = "site-design-visitor";
+
+const isDesign = (value: string | null): value is SiteDesign => value === "texotic" || value === "classic";
 
 /**
  * Preview link: ?design=texotic or ?design=classic shows that design in this tab only,
@@ -28,15 +31,27 @@ const readPreviewDesign = (): SiteDesign | null => {
     if (param === "texotic" || param === "classic") sessionStorage.setItem(PREVIEW_KEY, param);
     else if (param === "off") sessionStorage.removeItem(PREVIEW_KEY);
     const preview = sessionStorage.getItem(PREVIEW_KEY);
-    return preview === "texotic" || preview === "classic" ? preview : null;
+    return isDesign(preview) ? preview : null;
+  } catch {
+    return null;
+  }
+};
+
+/** The visitor's own pick from the navbar switch, else a preview link. Beats the admin default. */
+const readOverrideDesign = (): SiteDesign | null => {
+  const preview = readPreviewDesign();
+  if (preview) return preview;
+  try {
+    const visitor = localStorage.getItem(VISITOR_KEY);
+    return isDesign(visitor) ? visitor : null;
   } catch {
     return null;
   }
 };
 
 export const readCachedDesign = (): SiteDesign => {
-  const preview = readPreviewDesign();
-  if (preview) return preview;
+  const override = readOverrideDesign();
+  if (override) return override;
   try {
     return localStorage.getItem(STORAGE_KEY) === "texotic" ? "texotic" : "classic";
   } catch {
@@ -46,8 +61,8 @@ export const readCachedDesign = (): SiteDesign => {
 
 export const applyDesign = (design: SiteDesign) => {
   document.documentElement.classList.toggle(THEME_CLASS, design === "texotic");
-  // A preview must not overwrite the cached real setting.
-  if (readPreviewDesign()) return;
+  // A preview or visitor pick must not overwrite the cached admin setting.
+  if (readOverrideDesign()) return;
   try {
     localStorage.setItem(STORAGE_KEY, design);
   } catch {
@@ -60,6 +75,8 @@ type SiteDesignContextValue = {
   isTexotic: boolean;
   /** Admin only: true shows the classic design, false shows the Texotic design. */
   setClassicEnabled: (enabled: boolean) => Promise<void>;
+  /** Navbar switch: flips the design for this visitor only. */
+  toggleDesign: () => void;
 };
 
 const SiteDesignContext = createContext<SiteDesignContextValue | null>(null);
@@ -80,7 +97,7 @@ export const SiteDesignProvider = ({ children }: { children: ReactNode }) => {
           .eq("key", SETTING_KEY)
           .maybeSingle();
         if (error) throw error;
-        if (readPreviewDesign()) return;
+        if (readOverrideDesign()) return;
         // No row yet (or table not created) keeps the classic design.
         if (data) setDesign(data.value === false ? "texotic" : "classic");
       } catch (error) {
@@ -114,11 +131,31 @@ export const SiteDesignProvider = ({ children }: { children: ReactNode }) => {
       .from("site_settings")
       .upsert({ key: SETTING_KEY, value: enabled, updated_at: new Date().toISOString() });
     if (error) throw error;
+    // The admin should see exactly what visitors get, so drop any personal override.
+    try {
+      localStorage.removeItem(VISITOR_KEY);
+      sessionStorage.removeItem(PREVIEW_KEY);
+    } catch {
+      // Storage blocked — nothing to clear.
+    }
     setDesign(enabled ? "classic" : "texotic");
   }, []);
 
+  const toggleDesign = useCallback(() => {
+    setDesign((current) => {
+      const next: SiteDesign = current === "texotic" ? "classic" : "texotic";
+      try {
+        sessionStorage.removeItem(PREVIEW_KEY);
+        localStorage.setItem(VISITOR_KEY, next);
+      } catch {
+        // Storage blocked — the switch still works for this page view.
+      }
+      return next;
+    });
+  }, []);
+
   return (
-    <SiteDesignContext.Provider value={{ design, isTexotic: design === "texotic", setClassicEnabled }}>
+    <SiteDesignContext.Provider value={{ design, isTexotic: design === "texotic", setClassicEnabled, toggleDesign }}>
       {children}
     </SiteDesignContext.Provider>
   );

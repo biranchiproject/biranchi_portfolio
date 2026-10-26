@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useSiteDesign } from "@/lib/siteDesign";
+import DesignSwitch from "./DesignSwitch";
 
 type NavItem = {
   name: string;
@@ -99,6 +100,7 @@ const Header = () => {
 
           <div className="flex items-center gap-2">
             <span className="hidden lg:block w-px h-5 bg-black/10 mx-2" />
+            <DesignSwitch className="mr-1" />
             <button onClick={goToContact} className="tx-btn-clay hidden sm:inline-flex px-8 py-2 text-[13px]">
               Contact
             </button>
@@ -163,6 +165,7 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-4">
+            <DesignSwitch />
             <Button
               onClick={goToContact}
               className="bg-neon-green text-dark-bg hover:shadow-neon-strong font-semibold transition-all duration-300"
@@ -172,7 +175,8 @@ const Header = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-3">
+            <DesignSwitch />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
