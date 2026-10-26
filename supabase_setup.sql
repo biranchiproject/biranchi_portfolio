@@ -111,7 +111,8 @@ USING (true)
 WITH CHECK (true);
 
 INSERT INTO public.site_settings (key, value)
-VALUES ('classic_design', 'true'::jsonb)
+VALUES ('classic_design', 'true'::jsonb),
+       ('texotic_animations', 'true'::jsonb)  -- Animations switch in the Admin Dashboard
 ON CONFLICT (key) DO NOTHING;
 
 -- Make the API see the new table immediately.

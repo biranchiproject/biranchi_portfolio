@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import AdminDesignToggle from "@/components/AdminDesignToggle";
+import AdminAnimationToggle from "@/components/AdminAnimationToggle";
 
 type Project = {
     id: string;
@@ -370,14 +371,14 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground p-8">
+        <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 md:p-8">
             <div className="max-w-6xl mx-auto">
-                <div className="flex justify-between items-center mb-12">
-                     <div className="flex items-center space-x-4">
-                        <Button variant="ghost" onClick={() => navigate("/")} className="text-gray-text hover:text-neon-green">
-                            <ArrowLeft className="w-5 h-5 mr-2" /> Back
+                <div className="flex flex-wrap justify-between items-center gap-4 mb-8 md:mb-12">
+                     <div className="flex items-center gap-2 sm:gap-4">
+                        <Button variant="ghost" onClick={() => navigate("/")} className="text-gray-text hover:text-neon-green px-2 sm:px-4">
+                            <ArrowLeft className="w-5 h-5 sm:mr-2" /> <span className="hidden sm:inline">Back</span>
                         </Button>
-                        <h1 className="text-4xl font-bold font-tech text-neon-green">Admin <span className="text-foreground">Dashboard</span></h1>
+                        <h1 className="!text-2xl sm:!text-3xl md:!text-4xl font-bold font-tech text-neon-green">Admin <span className="text-foreground">Dashboard</span></h1>
                     </div>
                     <Button variant="destructive" onClick={handleLogout} className="flex items-center">
                         <LogOut className="w-4 h-4 mr-2" /> Logout
@@ -385,6 +386,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <AdminDesignToggle />
+                <AdminAnimationToggle />
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* CV Management */}
