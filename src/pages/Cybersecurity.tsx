@@ -9,7 +9,7 @@ const Cybersecurity = () => {
       eyebrowIcon={<ShieldCheck className="w-3.5 h-3.5" />}
       title={
         <>
-          🔐 <span className="text-neon-green">Cybersecurity</span>
+          <span className="heading-emoji">🔐 </span><span className="text-neon-green">Cybersecurity</span>
         </>
       }
       description="Network security, ethical hacking and vulnerability detection — the practices I bring into every product I build."

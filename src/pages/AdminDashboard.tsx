@@ -7,6 +7,7 @@ import { Plus, Trash2, Edit2, Upload, ExternalLink, Github, LogOut, ArrowLeft, M
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import AdminDesignToggle from "@/components/AdminDesignToggle";
 
 type Project = {
     id: string;
@@ -382,6 +383,8 @@ const AdminDashboard = () => {
                         <LogOut className="w-4 h-4 mr-2" /> Logout
                     </Button>
                 </div>
+
+                <AdminDesignToggle />
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* CV Management */}

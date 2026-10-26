@@ -13,7 +13,7 @@ const Education = () => {
       eyebrowIcon={<GraduationCap className="w-3.5 h-3.5" />}
       title={
         <>
-          📘 My <span className="text-neon-green">Education</span>
+          <span className="heading-emoji">📘 </span>My <span className="text-neon-green">Education</span>
         </>
       }
       description="My academic journey and qualifications — the foundation behind the work I ship."

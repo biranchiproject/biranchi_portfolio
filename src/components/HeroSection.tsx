@@ -1,4 +1,4 @@
-import { ChevronDown, Download, FileText } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/profile-photo.jpeg";
 import { useState, useEffect } from "react";
@@ -9,11 +9,13 @@ import { motion } from "framer-motion";
 import Magnetic from "./Magnetic";
 import { supabase } from "@/lib/supabase";
 import { useNavigate } from "react-router-dom";
+import { useSiteDesign } from "@/lib/siteDesign";
 
 const roles = ["Freelance Developer", "Cybersecurity Specialist", "AI Agent Developer", "Security Researcher", "Full Stack Developer"];
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const { isTexotic } = useSiteDesign();
   const [clickCount, setClickCount] = useState(0);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [cvUrl, setCvUrl] = useState<string | null>(null);
@@ -161,6 +163,124 @@ const HeroSection = () => {
       }
     }
   };
+
+  if (isTexotic) {
+    const facts = [
+      { label: "Role", value: "Freelance Developer" },
+      { label: "Focus", value: "Cybersecurity & AI" },
+      { label: "Based in", value: "Bhubaneswar, Odisha" },
+    ];
+
+    return (
+      <section id="home" className="relative overflow-hidden pt-32 md:pt-40 pb-10">
+        <div className="tx-silk" aria-hidden>
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
+            <span className="tx-chip">
+              Hi! I'm Biranchi · <span className="hidden sm:inline">Bhubaneswar,</span> Odisha
+            </span>
+
+            <h1 className="tx-solid-ink mt-8 text-[clamp(3rem,9.5vw,8rem)] leading-[0.92] tracking-[-0.06em]">
+              Securing the
+              <br />
+              Digital Frontier.
+            </h1>
+
+            <p className="mt-8 text-lg md:text-2xl text-[#71717a] min-h-[1.5em]">
+              I'm a <span className="font-semibold text-[#0a0a0a]">{displayText}</span>
+              <span className="inline-block w-[2px] h-[0.9em] translate-y-[0.12em] bg-[#f5900d] ml-0.5 animate-pulse" />
+            </p>
+            <p className="mt-3 text-base md:text-xl text-[#71717a] max-w-2xl mx-auto leading-relaxed">{subtitleText}</p>
+
+            <div className="mt-10 flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
+              <Magnetic>
+                <button
+                  onClick={() => document.querySelector("#portfolio")?.scrollIntoView({ behavior: "smooth" })}
+                  className="tx-btn-ink inline-flex items-center gap-2 px-10 py-3.5 text-sm min-w-[200px] justify-center"
+                >
+                  View My Work
+                  <ArrowUpRight className="tx-arrow w-4 h-4" />
+                </button>
+              </Magnetic>
+              <Magnetic>
+                <button
+                  onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                  className="tx-btn-clay px-10 py-3.5 text-sm min-w-[180px]"
+                >
+                  Get In Touch
+                </button>
+              </Magnetic>
+              <Magnetic>
+                <button onClick={() => navigate("/achievements")} className="tx-btn-clay px-10 py-3.5 text-sm min-w-[180px]">
+                  My Achievements
+                </button>
+              </Magnetic>
+              <Magnetic>
+                <button
+                  onClick={handleDownloadCv}
+                  className="tx-btn-clay inline-flex items-center justify-center gap-2 px-10 py-3.5 text-sm min-w-[180px]"
+                >
+                  <Download className="w-4 h-4" />
+                  Download CV
+                </button>
+              </Magnetic>
+            </div>
+          </motion.div>
+
+          {/* Glass panel — the big rounded sheet under the Texotic hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-16 md:mt-20 mx-auto max-w-5xl rounded-[40px] md:rounded-[56px] border-2 border-white/80 bg-white/25 backdrop-blur-md p-5 md:p-8 shadow-[0_30px_80px_-30px_rgba(120,100,20,0.35)]"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-center">
+              <div className="mx-auto cursor-pointer rounded-[32px] p-2.5 tx-surface" onClick={handleProfileClick}>
+                <div className="w-48 h-48 md:w-56 md:h-56 overflow-hidden rounded-[24px]">
+                  <img
+                    src={profilePhotoUrl || profilePhoto}
+                    alt="Biranchi - Cybersecurity Enthusiast & AI Developer"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              <div className="text-left">
+                <p className="tx-display text-2xl md:text-4xl font-bold tracking-[-0.03em] text-[#0a0a0a] leading-tight">
+                  Building secure, intelligent software —{" "}
+                  <span className="text-[#71717a]">delivered completely error-free.</span>
+                </p>
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {facts.map((fact) => (
+                    <div key={fact.label} className="rounded-2xl px-4 py-3 tx-pressed">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#71717a]">{fact.label}</p>
+                      <p className="mt-1 text-sm font-semibold text-[#0a0a0a]">{fact.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <AdminLogin isOpen={isAdminOpen} onOpenChange={setIsAdminOpen} />
+
+          <button
+            onClick={scrollToAbout}
+            className="mt-14 inline-flex flex-col items-center text-[#71717a] hover:text-[#0a0a0a] transition-colors duration-300"
+          >
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] mb-2">Scroll to explore</span>
+            <ChevronDown size={20} className="animate-bounce" />
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="home" className="min-h-screen bg-gradient-dark flex items-center justify-center relative overflow-hidden pt-24 md:pt-28">

@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Loader2 } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github, Loader2 } from "lucide-react";
 import project2 from "@/assets/project-2.png";
 import hackerStoreImg from "@/assets/hacker-store.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { useSiteDesign } from "@/lib/siteDesign";
+import TexoticWorkCard from "./TexoticWorkCard";
 
 const PortfolioSection = () => {
   const navigate = useNavigate();
+  const { isTexotic } = useSiteDesign();
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -64,12 +67,48 @@ const PortfolioSection = () => {
     fetchProjects();
   }, []);
 
+  if (isTexotic) {
+    return (
+      <section id="portfolio" className="py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <h2 className="text-[clamp(3rem,7vw,5rem)] leading-[1.05] pb-1">My Work</h2>
+          <p className="mt-3 text-lg text-[#71717a] max-w-2xl">
+            A collection of projects built with love, strategy, and creative impact.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <span className="tx-pressed rounded-full bg-black/[0.06] px-5 py-2 text-sm font-bold text-[#0a0a0a] tx-display">
+              Featured · {projects.length}
+            </span>
+            <button
+              onClick={() => navigate("/projects")}
+              className="tx-btn-clay inline-flex items-center gap-1.5 px-5 py-2 text-sm tx-display"
+            >
+              All projects
+              <ArrowUpRight className="tx-arrow w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {isLoading ? (
+              <div className="col-span-full flex justify-center py-16">
+                <Loader2 className="w-8 h-8 text-neon-green animate-spin" />
+              </div>
+            ) : (
+              projects.map((project) => <TexoticWorkCard key={project.id} project={project} />)
+            )}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="portfolio" className="py-12 md:py-20 bg-dark-surface">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            📂 My <span className="text-neon-green">Work</span>
+            <span className="heading-emoji">📂 </span>My <span className="text-neon-green">Work</span>
           </h2>
           <p className="text-xl text-gray-text max-w-3xl mx-auto">
             A collection of projects built with love, strategy, and creative impact.

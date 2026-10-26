@@ -106,7 +106,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            📩 Contact <span className="text-neon-green">Me</span>
+            <span className="heading-emoji">📩 </span>Contact <span className="text-neon-green">Me</span>
           </h2>
           <p className="text-xl text-gray-text max-w-3xl mx-auto">
             Interested in working together or want to connect? Feel free to reach out!

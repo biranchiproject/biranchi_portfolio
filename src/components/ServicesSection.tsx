@@ -221,8 +221,8 @@ const ServicesSection = ({ showHeading = true }: ServicesSectionProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-bold font-tech mb-6 tracking-tighter">
-                MY <span className="text-neon-green">SPECIALIZED</span> SERVICES
+              <h2 className="text-4xl md:text-6xl font-bold font-tech mb-6 tracking-tighter uppercase">
+                My <span className="text-neon-green">Specialized</span> Services
               </h2>
               <div className="w-24 h-1 bg-neon-green mx-auto mb-8"></div>
               <p className="text-xl text-gray-text max-w-2xl mx-auto font-light leading-relaxed">

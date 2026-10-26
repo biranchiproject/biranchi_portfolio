@@ -39,7 +39,7 @@ const EducationSection = ({ showHeading = true }: EducationSectionProps) => {
                 {showHeading && (
                     <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                            📘 My <span className="text-neon-green">Education</span>
+                            <span className="heading-emoji">📘 </span>My <span className="text-neon-green">Education</span>
                         </h2>
                         <p className="text-xl text-gray-text max-w-3xl mx-auto">
                             My academic journey and qualifications.

@@ -1,0 +1,530 @@
+/* ==========================================================================
+   Texotic design — light clay theme (cream, ink, amber)
+   Active when <html> has .theme-texotic (toggled from the Admin Dashboard).
+   It remaps the same tokens the classic design uses, so every section follows.
+   ========================================================================== */
+
+.theme-texotic {
+  --background: 80 39% 95%;          /* #f5f8ef cream */
+  --foreground: 0 0% 4%;             /* #0a0a0a ink */
+  --card: 80 39% 95%;
+  --card-foreground: 0 0% 4%;
+  --popover: 80 45% 97%;
+  --popover-foreground: 0 0% 4%;
+  --primary: 0 0% 4%;
+  --primary-foreground: 80 39% 95%;
+  --secondary: 80 22% 90%;
+  --secondary-foreground: 0 0% 4%;
+  --muted: 80 16% 88%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 80 22% 90%;
+  --accent-foreground: 0 0% 4%;
+  --border: 80 12% 86%;
+  --input: 80 12% 84%;
+  --ring: 33 92% 51%;
+  --radius: 1rem;
+
+  --neon-green: 30 90% 40%;          /* amber accent, readable on cream */
+  --neon-green-glow: 33 92% 51%;     /* #f5900d */
+  --dark-bg: 80 39% 95%;
+  --dark-surface: 80 30% 93.5%;
+  --dark-border: 80 10% 85%;
+  --gray-text: 240 4% 46%;           /* #71717a zinc */
+
+  --gradient-primary: linear-gradient(135deg, #f5900d 0%, #f7c948 100%);
+  --gradient-dark: linear-gradient(180deg, hsl(80 39% 95%) 0%, hsl(80 30% 93.5%) 100%);
+  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
+
+  /* Texotic's layered shadows, taken from texotic.in */
+  --tx-clay:
+    rgba(0, 0, 0, 0.08) 0px 0.71px 0.71px -0.67px, rgba(0, 0, 0, 0.08) 0px 1.81px 1.81px -1.33px,
+    rgba(0, 0, 0, 0.07) 0px 3.62px 3.62px -2px, rgba(0, 0, 0, 0.07) 0px 6.87px 6.87px -2.67px,
+    rgba(0, 0, 0, 0.05) 0px 13.65px 13.65px -3.33px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px,
+    rgb(255, 255, 255) 0px 3px 1px 0px inset;
+  --tx-clay-lift:
+    rgba(0, 0, 0, 0.08) 0px 1px 1px -0.67px, rgba(0, 0, 0, 0.08) 0px 3px 3px -1.33px,
+    rgba(0, 0, 0, 0.07) 0px 6px 6px -2px, rgba(0, 0, 0, 0.07) 0px 12px 12px -2.67px,
+    rgba(0, 0, 0, 0.06) 0px 24px 24px -3.33px, rgba(0, 0, 0, 0.04) 0px 48px 48px -4px,
+    rgb(255, 255, 255) 0px 3px 1px 0px inset;
+  --tx-clay-btn:
+    rgba(158, 158, 158, 0.69) 0px 0.71px 0.71px -0.58px, rgba(158, 158, 158, 0.68) 0px 1.81px 1.81px -1.17px,
+    rgba(158, 158, 158, 0.65) 0px 3.62px 3.62px -1.75px, rgba(158, 158, 158, 0.61) 0px 6.87px 6.87px -2.33px,
+    rgba(158, 158, 158, 0.52) 0px 13.65px 13.65px -2.92px, rgba(158, 158, 158, 0.3) 0px 30px 30px -3.5px,
+    rgb(255, 255, 255) 0px 3px 1px 0px inset;
+  --tx-ink-btn:
+    rgba(61, 61, 61, 0.72) 0px 0.6px 1.08px -1.25px, rgba(61, 61, 61, 0.64) 0px 2.29px 4.12px -2.5px,
+    rgba(61, 61, 61, 0.25) 0px 10px 18px -3.75px, rgba(0, 0, 0, 0.35) 0px 0.71px 0.71px -0.58px,
+    rgba(0, 0, 0, 0.34) 0px 1.81px 1.81px -1.17px, rgba(0, 0, 0, 0.33) 0px 3.62px 3.62px -1.75px,
+    rgba(0, 0, 0, 0.3) 0px 6.87px 6.87px -2.33px, rgba(0, 0, 0, 0.26) 0px 13.65px 13.65px -2.92px,
+    rgba(0, 0, 0, 0.15) 0px 30px 30px -3.5px;
+  --tx-pressed: rgba(0, 0, 0, 0.13) 4px 4px 9px 0px inset, rgba(255, 255, 255, 0.95) -4px -4px 9px 0px inset;
+  --tx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-neon: var(--tx-clay-lift);
+  --shadow-neon-strong: var(--tx-clay-lift);
+  --shadow-dark: 0 20px 40px rgba(0, 0, 0, 0.06);
+
+  color-scheme: light;
+}
+
+.theme-texotic body {
+  background: #f5f8ef;
+  color: #0a0a0a;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.theme-texotic ::selection {
+  background: rgba(245, 144, 13, 0.25);
+  color: #0a0a0a;
+}
+
+/* ---------- Typography ---------- */
+
+.theme-texotic .font-tech,
+.tx-display {
+  font-family: Satoshi, Inter, system-ui, sans-serif;
+}
+
+.tx-gradient-text,
+.theme-texotic h1,
+.theme-texotic h2 {
+  font-family: Satoshi, Inter, system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(0deg, #0e1c29 34%, #ffffff 124%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero headline is solid ink, no gradient ("Architecting the Next Epoch.") */
+.theme-texotic .tx-solid-ink {
+  background-image: none;
+  -webkit-text-fill-color: #0a0a0a;
+  color: #0a0a0a;
+  font-weight: 900;
+}
+
+/* Texotic headings are never all-caps and carry no emoji */
+.theme-texotic h1.uppercase,
+.theme-texotic h2.uppercase {
+  text-transform: none;
+}
+
+.theme-texotic .heading-emoji {
+  display: none;
+}
+
+/* Accent words inside headings turn zinc, like "Product-first. We ship our own..." */
+.theme-texotic h1 .text-neon-green,
+.theme-texotic h2 .text-neon-green {
+  -webkit-text-fill-color: #71717a;
+}
+
+.theme-texotic h3 {
+  font-family: Satoshi, Inter, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Highlighted words in body copy become confident ink instead of colour */
+.theme-texotic p span.text-neon-green,
+.theme-texotic li span.text-neon-green {
+  color: #0a0a0a;
+  font-weight: 600;
+}
+
+.theme-texotic p a.text-neon-green {
+  color: #0a0a0a;
+  font-weight: 600;
+  text-decoration-color: #f5900d;
+}
+
+/* Eyebrow chip — the "ABOUT TEXOTIC" pill */
+.tx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #52525b;
+  box-shadow: var(--tx-clay-btn);
+}
+
+/* ---------- Buttons ---------- */
+
+/* Primary — the ink pill ("Explore Products") */
+.tx-btn-ink,
+.theme-texotic button.bg-neon-green,
+.theme-texotic a.bg-neon-green,
+.theme-texotic label > div.bg-neon-green {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 999px;
+  background: #0a0a0a;
+  color: #f5f8ef;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: var(--tx-ink-btn);
+  transition: transform 0.45s var(--tx-ease), box-shadow 0.45s var(--tx-ease), background-color 0.3s ease;
+}
+
+/* Light sweep that runs across on hover */
+.tx-btn-ink::before,
+.theme-texotic button.bg-neon-green::before,
+.theme-texotic a.bg-neon-green::before,
+.theme-texotic label > div.bg-neon-green::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%) no-repeat;
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  transition: background-position 0.9s var(--tx-ease);
+  pointer-events: none;
+}
+
+/* Glass rim */
+.tx-btn-ink::after,
+.theme-texotic button.bg-neon-green::after,
+.theme-texotic a.bg-neon-green::after,
+.theme-texotic label > div.bg-neon-green::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -3px 8px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.tx-btn-ink:hover,
+.theme-texotic button.bg-neon-green:hover,
+.theme-texotic a.bg-neon-green:hover,
+.theme-texotic label:hover > div.bg-neon-green {
+  background: #000;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: var(--tx-ink-btn), 0 14px 34px -8px rgba(245, 144, 13, 0.65), 0 0 0 1px rgba(245, 144, 13, 0.25);
+}
+
+.tx-btn-ink:hover::before,
+.theme-texotic button.bg-neon-green:hover::before,
+.theme-texotic a.bg-neon-green:hover::before,
+.theme-texotic label:hover > div.bg-neon-green::before {
+  background-position: -50% 0;
+}
+
+.tx-btn-ink:active,
+.theme-texotic button.bg-neon-green:active,
+.theme-texotic a.bg-neon-green:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: var(--tx-ink-btn), inset 0 3px 8px rgba(0, 0, 0, 0.6);
+  transition-duration: 0.12s;
+}
+
+/* Secondary — the clay pill ("Start a Project", "Contact") */
+.tx-btn-clay,
+.theme-texotic button[class~="border-neon-green"],
+.theme-texotic a[class~="border-neon-green"] {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #0a0a0a;
+  font-weight: 600;
+  box-shadow: var(--tx-clay-btn);
+  transition: transform 0.45s var(--tx-ease), box-shadow 0.45s var(--tx-ease), background-color 0.3s ease;
+}
+
+.tx-btn-clay::before,
+.theme-texotic button[class~="border-neon-green"]::before,
+.theme-texotic a[class~="border-neon-green"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(120% 140% at 50% 120%, rgba(245, 144, 13, 0.22), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.45s var(--tx-ease);
+  pointer-events: none;
+}
+
+.tx-btn-clay:hover,
+.theme-texotic button[class~="border-neon-green"]:hover,
+.theme-texotic a[class~="border-neon-green"]:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: #0a0a0a;
+  transform: translateY(-3px);
+  box-shadow: var(--tx-clay-btn), 0 18px 30px -12px rgba(120, 110, 60, 0.35);
+}
+
+.tx-btn-clay:hover::before,
+.theme-texotic button[class~="border-neon-green"]:hover::before,
+.theme-texotic a[class~="border-neon-green"]:hover::before {
+  opacity: 1;
+}
+
+.tx-btn-clay:active,
+.tx-btn-clay[aria-pressed="true"],
+.theme-texotic button[class~="border-neon-green"]:active,
+.theme-texotic a[class~="border-neon-green"]:active {
+  transform: translateY(1px);
+  background: rgba(0, 0, 0, 0.03);
+  box-shadow: var(--tx-pressed);
+  transition-duration: 0.12s;
+}
+
+.tx-btn-clay svg,
+.tx-btn-ink svg {
+  transition: transform 0.45s var(--tx-ease);
+}
+
+.tx-btn-clay:hover svg.tx-arrow,
+.tx-btn-ink:hover svg.tx-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* Round clay icon button (socials). :where() keeps it overridable by utilities like lg:hidden */
+:where(.tx-icon-btn) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  color: #3f3f46;
+  box-shadow: var(--tx-clay);
+  transition: transform 0.45s var(--tx-ease), color 0.3s ease, box-shadow 0.45s var(--tx-ease);
+}
+
+.tx-icon-btn:hover {
+  color: #0a0a0a;
+  transform: translateY(-3px);
+  box-shadow: var(--tx-clay-lift), 0 10px 24px -10px rgba(245, 144, 13, 0.6);
+}
+
+/* ---------- Cards ---------- */
+
+.tx-card,
+.theme-texotic .bg-gradient-card,
+.theme-texotic [class*="bg-dark-bg/40"] {
+  position: relative;
+  border-color: transparent;
+  border-radius: 24px;
+  background: transparent;
+  box-shadow: var(--tx-clay);
+  backdrop-filter: none;
+  transition: transform 0.5s var(--tx-ease), box-shadow 0.5s var(--tx-ease);
+}
+
+/* Amber glow that follows the pointer (position is set from siteDesign.tsx) */
+.tx-card::after,
+.theme-texotic .bg-gradient-card::after,
+.theme-texotic [class*="bg-dark-bg/40"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), rgba(245, 144, 13, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s var(--tx-ease);
+  pointer-events: none;
+}
+
+.tx-card:hover,
+.theme-texotic .bg-gradient-card:hover,
+.theme-texotic [class*="bg-dark-bg/40"]:hover {
+  border-color: transparent;
+  transform: translateY(-6px);
+  box-shadow: var(--tx-clay-lift);
+}
+
+.tx-card:hover::after,
+.theme-texotic .bg-gradient-card:hover::after,
+.theme-texotic [class*="bg-dark-bg/40"]:hover::after {
+  opacity: 1;
+}
+
+.tx-card img,
+.theme-texotic .bg-gradient-card img {
+  transition: transform 0.8s var(--tx-ease);
+}
+
+.tx-card:hover img,
+.theme-texotic .bg-gradient-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Plain surfaces (admin cards, panels) get the soft clay edge too */
+.theme-texotic .bg-dark-surface.border-dark-border.rounded-lg,
+.theme-texotic .bg-dark-surface.border-dark-border.rounded-xl {
+  border-color: transparent;
+  box-shadow: var(--tx-clay);
+}
+
+/* Clay surface, lifted surface and "pressed" well (selected tabs, inputs) */
+.tx-surface {
+  box-shadow: var(--tx-clay);
+}
+
+.tx-surface-lift {
+  box-shadow: var(--tx-clay-lift);
+}
+
+.tx-pressed {
+  box-shadow: var(--tx-pressed);
+}
+
+/* ---------- Form fields ---------- */
+
+.theme-texotic input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.theme-texotic textarea {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: transparent;
+  border-radius: 16px;
+  color: #0a0a0a;
+  box-shadow: var(--tx-pressed);
+  transition: box-shadow 0.3s ease;
+}
+
+.theme-texotic input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+.theme-texotic textarea:focus {
+  border-color: transparent;
+  outline: none;
+  box-shadow: var(--tx-pressed), 0 0 0 2px rgba(245, 144, 13, 0.45);
+}
+
+.theme-texotic input::placeholder,
+.theme-texotic textarea::placeholder {
+  color: #a1a1aa;
+}
+
+/* ---------- Page chrome ---------- */
+
+/* Yellow "silk" backdrop from the Texotic home hero */
+.tx-silk {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% 0%, #f8f3cf 0%, #f6f2d2 35%, transparent 75%),
+    #f5f8ef;
+}
+
+.tx-silk span {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(38px);
+  opacity: 0.75;
+  mix-blend-mode: multiply;
+  animation: tx-drift 18s ease-in-out infinite alternate;
+}
+
+.tx-silk span:nth-child(1) {
+  width: 90%;
+  height: 90px;
+  left: -10%;
+  top: 46%;
+  background: linear-gradient(90deg, transparent, #f7d24a 30%, #f2b52a 60%, transparent);
+  rotate: -4deg;
+}
+
+.tx-silk span:nth-child(2) {
+  width: 70%;
+  height: 140px;
+  right: -15%;
+  top: 52%;
+  background: linear-gradient(90deg, transparent, #f5c13c 40%, #f7dd7a 70%, transparent);
+  rotate: -12deg;
+  animation-duration: 22s;
+  animation-delay: -6s;
+}
+
+.tx-silk span:nth-child(3) {
+  width: 60%;
+  height: 120px;
+  left: 15%;
+  top: 68%;
+  background: linear-gradient(90deg, transparent, #f2b52a 45%, transparent);
+  rotate: 18deg;
+  opacity: 0.55;
+  animation-duration: 26s;
+  animation-delay: -12s;
+}
+
+.tx-silk span:nth-child(4) {
+  width: 120%;
+  height: 260px;
+  left: -10%;
+  top: 30%;
+  background: radial-gradient(closest-side, rgba(247, 221, 122, 0.7), transparent);
+  opacity: 0.6;
+  animation-duration: 30s;
+}
+
+/* Film grain, then a fade to cream at the bottom */
+.tx-silk::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.tx-silk::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(180deg, transparent, #f5f8ef);
+}
+
+@keyframes tx-drift {
+  0% {
+    translate: -4% 0;
+  }
+  100% {
+    translate: 4% -18px;
+  }
+}
+
+/* Giant faded watermark at the very bottom of the footer */
+.tx-watermark {
+  font-family: Satoshi, Inter, system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  font-size: clamp(5rem, 22vw, 20rem);
+  text-align: center;
+  white-space: nowrap;
+  background-image: linear-gradient(180deg, rgba(14, 28, 41, 0.14) 0%, rgba(14, 28, 41, 0) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-silk span {
+    animation: none;
+  }
+
+  .tx-btn-ink,
+  .tx-btn-clay,
+  .tx-card,
+  .theme-texotic .bg-gradient-card {
+    transition: none;
+  }
+}

@@ -9,7 +9,7 @@ const StudentLancer = () => {
       eyebrowIcon={<Briefcase className="w-3.5 h-3.5" />}
       title={
         <>
-          🚀 Where I Freelance — <span className="text-neon-green">Student Lancer</span>
+          <span className="heading-emoji">🚀 </span>Where I Freelance — <span className="text-neon-green">Student Lancer</span>
         </>
       }
       description="A digital studio where emerging talent designs and ships world-class software — and where I take on client projects as a freelance developer, delivered error-free and handed over complete."

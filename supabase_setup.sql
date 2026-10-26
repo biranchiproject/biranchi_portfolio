@@ -72,3 +72,41 @@ USING (true);
 -- Newest messages first in the dashboard.
 CREATE INDEX IF NOT EXISTS contact_messages_created_at_idx
 ON public.contact_messages (created_at DESC);
+
+
+-- 4. Site settings (the "Website Design" switch in the Admin Dashboard)
+--    classic_design = true  -> the original dark / neon design
+--    classic_design = false -> the Texotic (cream / clay) design
+CREATE TABLE IF NOT EXISTS public.site_settings (
+    key TEXT PRIMARY KEY,
+    value JSONB NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+ALTER TABLE public.site_settings ENABLE ROW LEVEL SECURITY;
+
+-- Every visitor reads which design to show.
+DROP POLICY IF EXISTS "Anyone can read site settings" ON public.site_settings;
+CREATE POLICY "Anyone can read site settings"
+ON public.site_settings
+FOR SELECT
+USING (true);
+
+-- Same caveat as contact_messages: the admin uses the anon key, so writes must be
+-- allowed for it. Move to Supabase Auth and use auth.role() = 'authenticated' to lock down.
+DROP POLICY IF EXISTS "Allow insert of site settings" ON public.site_settings;
+CREATE POLICY "Allow insert of site settings"
+ON public.site_settings
+FOR INSERT
+WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow update of site settings" ON public.site_settings;
+CREATE POLICY "Allow update of site settings"
+ON public.site_settings
+FOR UPDATE
+USING (true)
+WITH CHECK (true);
+
+INSERT INTO public.site_settings (key, value)
+VALUES ('classic_design', 'true'::jsonb)
+ON CONFLICT (key) DO NOTHING;

@@ -5,9 +5,14 @@ import { useState, useEffect } from "react";
 import project2 from "@/assets/project-2.png";
 import hackerStoreImg from "@/assets/hacker-store.png";
 import { supabase } from "@/lib/supabase";
+import { useSiteDesign } from "@/lib/siteDesign";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import TexoticWorkCard from "@/components/TexoticWorkCard";
 
 const Projects = () => {
     const navigate = useNavigate();
+    const { isTexotic } = useSiteDesign();
     const [projects, setProjects] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -68,6 +73,50 @@ const Projects = () => {
         };
         fetchProjects();
     }, []);
+
+    if (isTexotic) {
+        return (
+            <div className="min-h-screen">
+                <Header />
+                <main className="pt-32 md:pt-36 pb-10">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                        <h1 className="text-[clamp(3.25rem,8vw,5rem)] leading-[1.1] pb-1">My Projects</h1>
+                        <p className="mt-3 text-lg text-[#71717a] max-w-2xl">
+                            Explore all the works I've built, from creative designs to complex engineering.
+                        </p>
+
+                        <div className="mt-8 flex flex-wrap gap-4">
+                            <button
+                                onClick={() => navigate("/#portfolio")}
+                                className="tx-btn-clay px-5 py-2 text-sm tx-display"
+                            >
+                                Featured
+                            </button>
+                            <span className="tx-pressed rounded-full bg-black/[0.06] px-5 py-2 text-sm font-bold text-[#0a0a0a] tx-display">
+                                All projects · {projects.length}
+                            </span>
+                        </div>
+
+                        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {isLoading ? (
+                                <div className="col-span-full flex justify-center py-20">
+                                    <Loader2 className="w-10 h-10 text-neon-green animate-spin" />
+                                </div>
+                            ) : projects.length > 0 ? (
+                                projects.map((project) => <TexoticWorkCard key={project.id} project={project} />)
+                            ) : (
+                                <div className="col-span-full text-center py-20 rounded-[24px] tx-pressed">
+                                    <p className="tx-display text-2xl font-bold text-[#0a0a0a]">No projects found yet.</p>
+                                    <p className="text-[#71717a] mt-2">Check back soon — new work is on the way.</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     // Generate random cubes
     const cubes = Array.from({ length: 15 }).map((_, i) => ({

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useSiteDesign } from "@/lib/siteDesign";
 
 type NavItem = {
   name: string;
@@ -24,8 +25,18 @@ const navigation: NavItem[] = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { isTexotic } = useSiteDesign();
+
+  // The Texotic nav turns into a frosted pill once the page scrolls.
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const isActive = (item: NavItem) => !item.hash && pathname === item.to;
 
@@ -57,6 +68,71 @@ const Header = () => {
 
     navigate("/#contact");
   };
+
+  if (isTexotic) {
+    return (
+      <header className="fixed top-0 left-0 right-0 z-50 px-3 pt-3 sm:pt-4">
+        <div
+          className={`mx-auto flex max-w-5xl items-center justify-between gap-2 rounded-full px-4 py-2 sm:px-5 transition-all duration-500 ${
+            isScrolled || isMenuOpen
+              ? "bg-[#f5f7e8]/85 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.05)]"
+              : "bg-transparent"
+          }`}
+        >
+          <Link to="/" className="tx-gradient-text text-2xl leading-none py-1" onClick={() => setIsMenuOpen(false)}>
+            Biranchi
+          </Link>
+
+          <nav className="hidden lg:flex items-center gap-0.5">
+            {navigation.slice(0, -1).map((item) => (
+              <button
+                key={item.name}
+                onClick={() => handleNavigate(item)}
+                className={`rounded-full px-3.5 py-2.5 text-[13px] font-medium tracking-[0.01em] transition-colors duration-200 ${
+                  isActive(item) ? "text-[#0a0a0a]" : "text-[#71717a] hover:text-[#0a0a0a]"
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <span className="hidden lg:block w-px h-5 bg-black/10 mx-2" />
+            <button onClick={goToContact} className="tx-btn-clay hidden sm:inline-flex px-8 py-2 text-[13px]">
+              Contact
+            </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className="tx-icon-btn lg:hidden"
+            >
+              {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
+        </div>
+
+        {isMenuOpen && (
+          <div className="lg:hidden mx-auto mt-3 max-w-5xl rounded-[24px] bg-[#f5f7e8]/95 backdrop-blur-xl p-3 tx-surface-lift animate-fade-in">
+            {navigation.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => handleNavigate(item)}
+                className={`block w-full rounded-2xl px-4 py-3 text-left text-sm font-medium transition-colors ${
+                  isActive(item) ? "tx-pressed text-[#0a0a0a]" : "text-[#71717a] hover:text-[#0a0a0a]"
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+            <button onClick={goToContact} className="tx-btn-ink mt-3 w-full py-3 text-sm">
+              Contact Me
+            </button>
+          </div>
+        )}
+      </header>
+    );
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-dark-border">

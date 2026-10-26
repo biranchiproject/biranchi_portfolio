@@ -143,7 +143,7 @@ const StudentLancerSection = ({ showHeading = true }: StudentLancerSectionProps)
               Freelance Developer
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-tech">
-              🚀 Where I Freelance — <span className="text-neon-green">Student Lancer</span>
+              <span className="heading-emoji">🚀 </span>Where I Freelance — <span className="text-neon-green">Student Lancer</span>
             </h2>
             <p className="text-xl text-gray-text max-w-3xl mx-auto">
               A digital studio where emerging talent designs and ships world-class software — and where I take on

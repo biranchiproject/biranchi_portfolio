@@ -71,7 +71,7 @@ const SkillsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            🧩 My <span className="text-neon-green">Skills</span>
+            <span className="heading-emoji">🧩 </span>My <span className="text-neon-green">Skills</span>
           </h2>
           <p className="text-xl text-gray-text max-w-3xl mx-auto">
             Tools I use to design, develop, and deliver results.

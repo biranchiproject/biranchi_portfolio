@@ -13,31 +13,34 @@ import StudentLancer from "./pages/StudentLancer";
 import Services from "./pages/Services";
 import Cybersecurity from "./pages/Cybersecurity";
 import Education from "./pages/Education";
+import { SiteDesignProvider } from "./lib/siteDesign";
 
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/student-lancer" element={<StudentLancer />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/cybersecurity" element={<Cybersecurity />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/achievements" element={<Achievements />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <SiteDesignProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/student-lancer" element={<StudentLancer />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/cybersecurity" element={<Cybersecurity />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/achievements" element={<Achievements />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </SiteDesignProvider>
   </QueryClientProvider>
 );
 
