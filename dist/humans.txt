@@ -1,0 +1,11 @@
+/* TEAM */
+Developer: Biranchi Narayan Sahoo
+Role: Freelance Developer at StudentLancer · Cybersecurity Enthusiast · AI Agent Developer · Full Stack Developer
+Contact: sahoobiranchi8249@gmail.com
+From: Bhubaneswar, Odisha, India
+LinkedIn: https://www.linkedin.com/in/biranchisahoo/
+
+/* SITE */
+Last update: 2026-10-27
+Standards: HTML5, CSS3, Schema.org
+Components: React, Vite, Tailwind CSS

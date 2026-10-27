@@ -1,0 +1,48 @@
+# Biranchi Narayan Sahoo
+
+> Biranchi Narayan Sahoo (also known as Biranchi) is a freelance developer from Bhubaneswar, Odisha, India. Biranchi takes on client projects through StudentLancer, a digital studio that designs and ships websites, products and brands, and handles each one personally — discovery, design, engineering, testing and a complete, error-free handover. Biranchi is a cybersecurity enthusiast with hands-on experience in web application security, network analysis (Nmap, Wireshark) and ethical hacking fundamentals, and builds AI-powered systems: AI agents, RAG-based tools, voice assistants and automation. Biranchi is currently pursuing a B.Tech at GIET Bhubaneswar after completing a Diploma in Computer Science Engineering at BOSE, Cuttack.
+
+## Key facts
+- Full name: Biranchi Narayan Sahoo
+- Also known as: Biranchi, Biranchi Sahoo, Biranchi Narayan, Biranchi N. Sahoo, B. N. Sahoo
+- Role: Freelance Developer at StudentLancer · Cybersecurity Enthusiast · AI Agent Developer · Full Stack Developer
+- Works with: StudentLancer (https://www.studentlancer.in/)
+- Location: Bhubaneswar, Odisha, India
+- Education: Bachelor of Technology (B.Tech), GIET Bhubaneswar (currently pursuing); Diploma in Computer Science Engineering, Bhubanananda Odisha School of Engineering (BOSE), Cuttack (completed)
+- Expertise: Cybersecurity, Ethical Hacking, Penetration Testing, Web Application Security, Network Security, Nmap, Wireshark, Bug Bounty, AI Agent Development, Large Language Models, RAG Systems, Voice AI Assistants, Workflow Automation, Full Stack Development, React, Next.js, TypeScript, Node.js, Python, React Native, UI/UX Design, Figma, Docker, CI/CD, Technical SEO
+- Email: sahoobiranchi8249@gmail.com
+- Phone: +91 8249735998
+- Official website: https://my-portfolio-6ie.pages.dev/
+- Profiles: https://www.linkedin.com/in/biranchisahoo/, https://github.com/biranchiproject, https://www.instagram.com/biranchi._.sahoo/
+
+## Pages
+- [Home](https://my-portfolio-6ie.pages.dev/): Official portfolio of Biranchi Narayan Sahoo (Biranchi), freelance developer at StudentLancer from Bhubaneswar, Odisha. Cybersecurity, AI agents, full stack web development and error-free project delivery.
+- [Student Lancer](https://my-portfolio-6ie.pages.dev/student-lancer): How Biranchi Narayan Sahoo works as a freelance developer with StudentLancer: web engineering, product design, mobile apps, AI automation and DevOps — tested, error-free and handed over complete.
+- [Services & Skills](https://my-portfolio-6ie.pages.dev/services): Services and skills offered by Biranchi Narayan Sahoo: secure web development, AI agent development, custom AI tools, RAG systems, voice AI assistants, ethical hacking and web application security.
+- [Cybersecurity](https://my-portfolio-6ie.pages.dev/cybersecurity): Cybersecurity work of Biranchi Narayan Sahoo: ethical hacking, penetration testing, web application security (XSS, SQL injection), network security with Nmap and Wireshark, and bug bounty research.
+- [Education](https://my-portfolio-6ie.pages.dev/education): Education of Biranchi Narayan Sahoo: B.Tech (currently pursuing) at GIET Bhubaneswar and Diploma in Computer Science Engineering from BOSE (Bhubanananda Odisha School of Engineering), Cuttack.
+- [My Work](https://my-portfolio-6ie.pages.dev/projects): Projects built by Biranchi Narayan Sahoo, including Hacker Store and Sona Store — React web apps, full stack platforms and client work, from creative design to complex engineering.
+- [Achievements](https://my-portfolio-6ie.pages.dev/achievements): Achievements, certifications and professional milestones of Biranchi Narayan Sahoo in cybersecurity, AI and software development.
+
+## Projects
+- [Hacker Store](https://hacker-store.pages.dev/): A cyber-themed app store platform with a hacker-style UI, dark interface, secure download system and categorized applications.
+- [Sona Store](https://sona-store.pages.dev/): A dynamic app store platform with a large application library, seamless downloads and a modern, Play Store-like interface.
+
+## FAQ
+### Who is Biranchi Narayan Sahoo?
+Biranchi Narayan Sahoo (also known as Biranchi) is a freelance developer from Bhubaneswar, Odisha, India. Biranchi takes on client projects through StudentLancer, a digital studio that designs and ships websites, products and brands, and handles each one personally — discovery, design, engineering, testing and a complete, error-free handover. Biranchi is a cybersecurity enthusiast with hands-on experience in web application security, network analysis (Nmap, Wireshark) and ethical hacking fundamentals, and builds AI-powered systems: AI agents, RAG-based tools, voice assistants and automation. Biranchi is currently pursuing a B.Tech at GIET Bhubaneswar after completing a Diploma in Computer Science Engineering at BOSE, Cuttack.
+
+### What does Biranchi Narayan Sahoo do?
+Biranchi Narayan Sahoo is a freelance developer at StudentLancer. Biranchi builds secure websites and web apps (React, Next.js, full stack), AI agents and automation tools, and mobile apps, and applies cybersecurity practices — web application security, penetration testing and network analysis — to every project delivered.
+
+### Where is Biranchi Narayan Sahoo from?
+Biranchi Narayan Sahoo is based in Bhubaneswar, Odisha, India. Biranchi studied Computer Science Engineering in Cuttack and is now pursuing a B.Tech at GIET Bhubaneswar.
+
+### Is Biranchi Sahoo associated with StudentLancer?
+Yes. Biranchi Sahoo works as a freelance developer with StudentLancer (studentlancer.in), taking client projects from the first call to the final handover.
+
+### What projects has Biranchi Narayan Sahoo built?
+Public projects by Biranchi include Hacker Store (hacker-store.pages.dev), a cyber-themed app store with a secure download system, and Sona Store (sona-store.pages.dev), a Play Store-style app store platform — along with client websites delivered through StudentLancer.
+
+### How can I contact or hire Biranchi Narayan Sahoo?
+You can email Biranchi Narayan Sahoo at sahoobiranchi8249@gmail.com, call +91 8249735998, connect on LinkedIn (linkedin.com/in/biranchisahoo), or use the contact form on the official portfolio website.

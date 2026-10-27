@@ -186,7 +186,7 @@ const HeroSection = () => {
               Hi! I'm Biranchi · Creativity
             </span>
 
-            <h1 className="sr-only">Biranchi — Securing the Digital Frontier</h1>
+            <h1 className="sr-only">Biranchi Narayan Sahoo — Freelance Developer, Cybersecurity Enthusiast &amp; AI Developer</h1>
 
             {/* Animated profile circle: spinning amber ring, pulsing glow, gentle float */}
             <div className="mt-12 flex justify-center">
@@ -219,7 +219,7 @@ const HeroSection = () => {
                 <div className="absolute inset-0 rounded-full overflow-hidden border-[6px] border-[#f5f8ef] shadow-[0_10px_30px_-8px_rgba(0,0,0,.35)]">
                   <img
                     src={profilePhotoUrl || profilePhoto}
-                    alt="Biranchi - Cybersecurity Enthusiast & AI Developer"
+                    alt="Biranchi Narayan Sahoo - Freelance Developer, Cybersecurity Enthusiast & AI Developer"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -324,6 +324,7 @@ const HeroSection = () => {
 
           {/* Main Title */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up leading-tight min-h-[1.2em]" style={{ animationDelay: "0.4s" }}>
+            <span className="sr-only">Biranchi Narayan Sahoo — </span>
             <span className="relative">
               <span className="text-neon-green">{displayText.split(" ")[0]}</span>
               <span className="text-foreground">
@@ -353,7 +354,7 @@ const HeroSection = () => {
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-neon-green shadow-neon-strong animate-float">
                 <img
                   src={profilePhotoUrl || profilePhoto}
-                  alt="Biranchi - Cybersecurity Enthusiast & AI Developer"
+                  alt="Biranchi Narayan Sahoo - Freelance Developer, Cybersecurity Enthusiast & AI Developer"
                   className="w-full h-full object-cover"
                 />
               </div>

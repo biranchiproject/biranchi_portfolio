@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, ExternalLink, Github, Loader2 } from "lucide-react";
-import project2 from "@/assets/project-2.png";
-import hackerStoreImg from "@/assets/hacker-store.png";
+import project2 from "@/assets/project-2.jpg";
+import hackerStoreImg from "@/assets/hacker-store.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";

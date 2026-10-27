@@ -1,14 +1,121 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /admin
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /admin
+
+User-agent: Slurp
+Allow: /
+Disallow: /admin
+
+User-agent: YandexBot
+Allow: /
+Disallow: /admin
+
+User-agent: Applebot
+Allow: /
+Disallow: /admin
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin
+
+User-agent: Claude-User
+Allow: /
+Disallow: /admin
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin
+
+User-agent: CCBot
+Allow: /
+Disallow: /admin
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /admin
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /admin
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin
+
+User-agent: Bytespider
+Allow: /
+Disallow: /admin
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /admin
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /admin
+
+User-agent: LinkedInBot
+Allow: /
+Disallow: /admin
+
+User-agent: WhatsApp
+Allow: /
+Disallow: /admin
+
+User-agent: TelegramBot
+Allow: /
+Disallow: /admin
+
+User-agent: Discordbot
+Allow: /
+Disallow: /admin
 
 User-agent: *
 Allow: /
+Disallow: /admin
+
+Sitemap: https://my-portfolio-6ie.pages.dev/sitemap.xml
